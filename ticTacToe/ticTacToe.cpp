@@ -20,6 +20,7 @@ void InitBoard(char** board, int boardSize) {
 
 void PrintBoard(char** board, int boardSize) {
 	system("CLS");
+	cout << "Welcome to the Tic Tac Toe game\n\n";
 	cout << "    A   B   C   \n";
 	for (int i = 0; i < boardSize; i++)
 	{
@@ -124,7 +125,7 @@ bool checkInput(char* input, int& row, int& col, int boardSize) {
 	return true;
 }
 
-void pcMove(char** board, int boardSize, int difficulty) {
+void pcMove(char** board, int boardSize) {
 	int emptyCells[9][2];							//Storage for empty cells
 	int emptyCount = 0;
 
@@ -273,8 +274,6 @@ void main() {
 
 	char winner = ' ';
 	bool humanTurn = true;
-
-	cout << "Welcome to the Tic Tac Toe game\n\nPlease choose a difficultyy level:\n";
 
 	while (winner == ' ') {
 		PrintBoard(board, boardSize);
