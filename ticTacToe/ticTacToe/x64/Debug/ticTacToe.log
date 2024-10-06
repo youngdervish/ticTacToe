@@ -1,0 +1,5 @@
+﻿  ticTacToe.cpp
+C:\Users\Eso\source\repos\ticTacToe\ticTacToe\ticTacToe.cpp(155,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Eso\source\repos\ticTacToe\ticTacToe\ticTacToe.cpp(156,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Eso\source\repos\ticTacToe\ticTacToe\ticTacToe.cpp(99,1): warning C4715: 'winnerCheck': not all control paths return a value
+  ticTacToe.vcxproj -> C:\Users\Eso\source\repos\ticTacToe\ticTacToe\x64\Debug\ticTacToe.exe

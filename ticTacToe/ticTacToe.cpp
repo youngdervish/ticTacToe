@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 void inputUpperCase(char& ch) {
 	if (ch >= 'a' && ch <= 'z') {
 		ch = ch - ('a' - 'A');
@@ -123,7 +124,7 @@ bool checkInput(char* input, int& row, int& col, int boardSize) {
 	return true;
 }
 
-void pcMove(char** board, int boardSize) {
+void pcMove(char** board, int boardSize, int difficulty) {
 	int emptyCells[9][2];							//Storage for empty cells
 	int emptyCount = 0;
 
@@ -279,7 +280,8 @@ void main() {
 		PrintBoard(board, boardSize);
 		if (humanTurn) {
 			char move[3];
-			int row, col;
+			int row;
+			int col;
 
 			cout << "Enter your move (i.e. 1A, 1B or 3C): \n";
 			cin >> move;
@@ -294,7 +296,7 @@ void main() {
 		}
 		else {
 			cout << "The PC is making its move. Please wait a moment:\n";
-			pcMove(board, boardSize);
+			pcMove(board, boardSize, difficulty);
 			humanTurn = true;
 		}
 		winner = winnerCheck(board, boardSize);
@@ -310,4 +312,6 @@ void main() {
 	else {
 		cout << "\n\033[32mFriendship won\n";
 	}
+
+	
 }
