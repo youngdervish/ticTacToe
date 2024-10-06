@@ -18,20 +18,29 @@ void InitBoard(char** board, int boardSize) {
 }
 
 void PrintBoard(char** board, int boardSize) {
-	cout << "   A   B   C   \n";
+	system("CLS");
+	cout << "    A   B   C   \n";
 	for (int i = 0; i < boardSize; i++)
 	{
 		cout << i + 1 << "  ";
 		for (int j = 0; j < boardSize; j++)
 		{
-			cout << board[i][j];
+			if (board[i][j] == 'X') {
+				cout << "\033[31m X \033[0m";
+			}
+			else if (board[i][j] == 'O') {
+				cout << "\033[34m O \033[0m";
+			}
+			else {
+				cout << " " << board[i][j] << " ";
+			}
 			if (j < boardSize - 1) {
-				cout << " | ";
+				cout << "|";
 			}
 		}
 		cout << "\n";
 		if (i < boardSize - 1) {
-			cout << "  ---|---|---\n";
+			cout << "   ---|---|---\n";
 		}
 	}
 	cout << "\n";
@@ -129,28 +138,142 @@ void pcMove(char** board, int boardSize) {
 			}
 		}
 	}												//This keeps updating after every turn
-	
+
 	if (emptyCount == 0) return;
-
-	int randomIndex = rand() % emptyCount;
-	int row = emptyCells[randomIndex][0];
-	int col = emptyCells[randomIndex][1];
-	board[row][col] = 'O';
+	//The commented code below is giving errors in the main section although it works despite it
+	//Ashaqidaki dovr ichi kod niyese error verir ve hemchinin dogru shekilde ishleyir
+	/*for (int i = 0; i < boardSize; i++)
+	{
+		if (board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == ' ') {
+			board[i][2] = 'O';
+			return;
+		}
+		else if (board[i][0] == 'X' && board[i][1] == ' ' && board[i][2] == 'X') {
+			board[i][1] = 'O';
+			return;
+		}
+		else if (board[i][0] == ' ' && board[0][1] == 'X' && board[0][2] == 'X') {
+			board[i][0] = 'O';
+			return;
+		}	// Loop through rows
+	for (int i = 0; i < boardSize; i++)
+	{
+		if (board[0][i] == 'X' && board[1][i] == 'X' && board[2][i] == ' ') {
+			board[2][i] = 'O';
+			return;
+		}
+		if (board[0][i] == 'X' && board[1][i] == ' ' && board[2][i] == 'X') {
+			board[1][i] = 'O';
+				return;
+		}
+		if (board[0][i] == ' ' && board[1][i] == 'X' && board[2][i] == 'X') {
+			board[0][i] = 'O';
+			return;
+		}
+	}	// Loop through columns
+	*/
+	//The conditions below are written due to commented code above causing errors despite working properly
+	//Ashaqidaki shertler yuxarida kommente alinmish kodun error vermesine gore yazilmishdir.
+	if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == ' ') {
+		board[0][2] = 'O';
+	}
+	else if (board[0][0] == 'X' && board[0][2] == 'X' && board[0][1] == ' ') {
+		board[0][1] = 'O';
+	}
+	else if (board[0][0] == ' ' && board[0][1] == 'X' && board[0][2] == 'X') {
+		board[0][0] = 'O';
+	}			//1st row 
+	else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == ' ') {
+		board[1][2] = 'O';
+	}
+	else if (board[1][0] == 'X' && board[1][2] == 'X' && board[1][1] == ' ') {
+		board[1][1] = 'O';
+	}
+	else if (board[1][0] == ' ' && board[1][1] == 'X' && board[1][2] == 'X') {
+		board[1][0] = 'O';
+	}			//2nd row
+	else if (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == ' ') {
+		board[2][2] = 'O';
+	}
+	else if (board[2][0] == 'X' && board[2][2] == 'X' && board[2][1] == ' ') {
+		board[2][1] = 'O';
+	}
+	else if (board[2][0] == ' ' && board[2][1] == 'X' && board[2][2] == 'X') {
+		board[2][0] = 'O';
+	}			//3rd row
+	else if (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == ' ') {
+		board[2][0] = 'O';
+	}
+	else if (board[0][0] == 'X' && board[1][0] == ' ' && board[2][0] == 'X') {
+		board[1][0] = 'O';
+	}
+	else if (board[0][0] == ' ' && board[1][0] == 'X' && board[2][0] == 'X') {
+		board[0][0] = 'O';
+	}			//1st column
+	else if (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == ' ') {
+		board[2][1] = 'O';
+	}
+	else if (board[0][1] == 'X' && board[1][1] == ' ' && board[2][1] == 'X') {
+		board[1][1] = 'O';
+	}
+	else if (board[0][1] == ' ' && board[1][1] == 'X' && board[2][1] == 'X') {
+		board[0][1] = 'O';
+	}			//2nd column
+	else if (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == ' ') {
+		board[2][2] = 'O';
+	}
+	else if (board[0][2] == 'X' && board[1][2] == ' ' && board[2][2] == 'X') {
+		board[1][2] = 'O';
+	}
+	else if (board[0][2] == ' ' && board[0][1] == 'X' && board[2][2] == 'X') {
+		board[0][2] = 'O';
+	}			//3rd column
+	else if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == ' ') {
+		board[2][2] = 'O';
+		return;
+	}
+	else if (board[0][0] == 'X' && board[1][1] == ' ' && board[2][2] == 'X') {
+		board[1][1] = 'O';
+		return;
+	}
+	else if (board[0][0] == ' ' && board[1][1] == 'X' && board[2][2] == 'X') {
+		board[0][0] = 'O';
+		return;
+	}			//1st diagonal
+	else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == ' ') {
+		board[2][0] = 'O';
+		return;
+	}
+	else if (board[0][2] == 'X' && board[1][1] == ' ' && board[2][0] == 'X') {
+		board[1][1] = 'O';
+		return;
+	}
+	else if (board[0][2] == ' ' && board[1][1] == 'X' && board[2][0] == 'X') {
+		board[0][2] = 'O';
+		return;
+	}			//2nd diag
+	else {
+		int randomIndex = rand() % emptyCount;
+		int row = emptyCells[randomIndex][0];
+		int col = emptyCells[randomIndex][1];
+		board[row][col] = 'O';
+	}
 }
-
 
 void main() {
 	srand(time(NULL));
 	const int boardSize = 3;
-	char** board = new char*[boardSize];
+	char** board = new char* [boardSize];
 	for (int i = 0; i < boardSize; i++)
 	{
 		board[i] = new char[boardSize];
 	}
-
 	InitBoard(board, boardSize);
+
 	char winner = ' ';
 	bool humanTurn = true;
+
+	cout << "Welcome to the Tic Tac Toe game\n\nPlease choose a difficultyy level:\n";
 
 	while (winner == ' ') {
 		PrintBoard(board, boardSize);
@@ -179,12 +302,12 @@ void main() {
 	PrintBoard(board, boardSize);
 
 	if (winner == 'X') {
-		cout << "\nYou win some)\n";
+		cout << "\n\033[31mYou win some)\n";
 	}
 	else if (winner == 'O') {
-		cout << "\nYou lose some(\n";
+		cout << "\n\033[34mYou lose some(\n";
 	}
 	else {
-		cout << "\nFriendship won\n";
+		cout << "\n\033[32mFriendship won\n";
 	}
 }
